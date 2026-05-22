@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-50 text-gray-900 antialiased;
+  margin: 0;
+}
+
+.stat-card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-100 p-5;
+}
+
+.table-row-hover:hover {
+  @apply bg-gray-50;
+}
