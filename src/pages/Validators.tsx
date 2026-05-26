@@ -34,9 +34,9 @@ export default function Validators() {
               {loading ? (
                 <tr><td colSpan={8} className="text-center py-10 text-gray-400">Loading...</td></tr>
               ) : validators.map(v => (
-                <tr key={v.validator_address} className="table-row-hover border-t border-gray-50">
+                <tr key={v.owner_address} className="table-row-hover border-t border-gray-50">
                   <td className="px-5 py-3 font-mono text-gray-500">
-                    <Link to={`/validators/${v.validator_address}`} className="hover:text-primary-600">{v.validator_address.slice(0, 12)}...</Link>
+                    <Link to={`/validators/${v.owner_address}`} className="hover:text-primary-600">{v.owner_address.slice(0, 12)}...</Link>
                   </td>
                   <td className="px-5 py-3">{formatGF(v.stake)}</td>
                   <td className="px-5 py-3">{formatGF(v.delegated_stake)}</td>

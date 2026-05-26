@@ -29,13 +29,14 @@ export default function ValidatorDetailPage() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-gray-900 mb-2">Validator</h1>
-      <p className="text-sm font-mono text-gray-500 mb-6 break-all">{validator.validator_address}</p>
+      <p className="text-sm font-mono text-gray-500 mb-6 break-all">{validator.owner_address}</p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
         {[
           ['Status', validator.status],
           ['Endpoint', validator.endpoint],
-          ['Public Key', validator.public_key?.slice(0, 20) + '...'],
+          ['Operator Address', validator.operator_address?.slice(0, 20) + '...'],
+          ['Operator Key', validator.operator_public_key?.slice(0, 20) + '...'],
           ['Total Stake', formatGF(validator.stake)],
           ['Self Stake', formatGF(validator.self_stake)],
           ['Delegated Stake', formatGF(validator.delegated_stake)],
@@ -56,7 +57,7 @@ export default function ValidatorDetailPage() {
       </div>
 
       <div className="flex gap-3">
-        <Link to={`/accounts/${validator.validator_address}`} className="text-sm text-primary-600 hover:underline">
+        <Link to={`/accounts/${validator.owner_address}`} className="text-sm text-primary-600 hover:underline">
           View Account →
         </Link>
         <Link to="/validators" className="text-sm text-gray-500 hover:underline">

@@ -140,8 +140,9 @@ export interface MinerDetail extends MinerInfo {
 }
 
 export interface ValidatorInfo {
-  validator_address: string;
-  public_key: string;
+  owner_address: string;
+  operator_address: string;
+  operator_public_key: string;
   stake: number;
   delegated_stake: number;
   status: string;
@@ -150,6 +151,7 @@ export interface ValidatorInfo {
   slashed: number;
   evidence_count: number;
   rewards: number;
+  commission_rate_bps?: number;
 }
 
 export interface ValidatorDetail extends ValidatorInfo {
@@ -158,6 +160,15 @@ export interface ValidatorDetail extends ValidatorInfo {
   delegator_count: number;
   delegation_rewards: number;
   registered_at_unix: number;
+}
+
+export interface UnbondingEntry {
+  id: string;
+  delegator: string;
+  validator: string;
+  amount: number;
+  created_at_unix: number;
+  matures_at_unix: number;
 }
 
 export interface SearchResult {
