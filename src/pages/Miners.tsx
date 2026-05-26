@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchMiners, MinerInfo } from '../api';
+import { formatGF } from '../lib/format';
 
 function formatBytes(bytes: number): string {
   if (bytes === 0) return '0 B';
@@ -48,7 +49,7 @@ export default function Miners() {
                   </td>
                   <td className="px-5 py-3">{formatBytes(m.capacity_bytes)}</td>
                   <td className="px-5 py-3">{formatBytes(m.used_bytes)}</td>
-                  <td className="px-5 py-3">{m.stake.toLocaleString()}</td>
+                  <td className="px-5 py-3">{formatGF(m.stake)}</td>
                   <td className="px-5 py-3">
                     <span className={`text-xs px-2 py-0.5 rounded-full ${m.status === 'active' ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'}`}>
                       {m.status}
@@ -58,8 +59,8 @@ export default function Miners() {
                     <span className="text-green-600">{m.proof_success}</span> / <span className="text-red-500">{m.proof_failure}</span>
                   </td>
                   <td className="px-5 py-3 text-xs">{m.retrieval_success} ({formatBytes(m.retrieval_bytes)})</td>
-                  <td className="px-5 py-3">{((m.storage_rewards || 0) + (m.retrieval_rewards || 0) + (m.repair_rewards || 0)).toLocaleString()}</td>
-                  <td className="px-5 py-3 text-red-500">{m.slashed.toLocaleString()}</td>
+                  <td className="px-5 py-3">{formatGF((m.storage_rewards || 0) + (m.retrieval_rewards || 0) + (m.repair_rewards || 0))}</td>
+                  <td className="px-5 py-3 text-red-500">{formatGF(m.slashed)}</td>
                 </tr>
               ))}
             </tbody>

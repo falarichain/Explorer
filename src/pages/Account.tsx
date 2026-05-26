@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchAccount, fetchTransactions, AccountInfo, TxSummary } from '../api';
+import { formatGF } from '../lib/format';
 
 export default function AccountPage() {
   const { address } = useParams<{ address: string }>();
@@ -33,10 +34,10 @@ export default function AccountPage() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         {[
-          ['Balance', account.balance.toLocaleString()],
+          ['Balance', formatGF(account.balance)],
           ['Nonce', String(account.nonce)],
-          ['Locked Stake', account.locked_stake.toLocaleString()],
-          ['Locked Storage', account.locked_storage.toLocaleString()],
+          ['Locked Stake', formatGF(account.locked_stake)],
+          ['Locked Storage', formatGF(account.locked_storage)],
         ].map(([label, value]) => (
           <div key={label} className="stat-card">
             <div className="text-xs text-gray-400 mb-1">{label}</div>
@@ -67,7 +68,7 @@ export default function AccountPage() {
                   <td className="px-5 py-3">
                     <Link to={`/blocks/${tx.block_height}`} className="text-primary-600 hover:underline">{tx.block_height}</Link>
                   </td>
-                  <td className="px-5 py-3">{tx.fee}</td>
+                  <td className="px-5 py-3">{formatGF(tx.fee)}</td>
                 </tr>
               ))}
               {txs.length === 0 && (

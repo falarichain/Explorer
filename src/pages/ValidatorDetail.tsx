@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchValidator, ValidatorDetail } from '../api';
+import { formatGF } from '../lib/format';
 
 function formatTime(unix: number): string {
   if (!unix) return '-';
@@ -35,16 +36,16 @@ export default function ValidatorDetailPage() {
           ['Status', validator.status],
           ['Endpoint', validator.endpoint],
           ['Public Key', validator.public_key?.slice(0, 20) + '...'],
-          ['Total Stake', validator.stake.toLocaleString()],
-          ['Self Stake', validator.self_stake.toLocaleString()],
-          ['Delegated Stake', validator.delegated_stake.toLocaleString()],
+          ['Total Stake', formatGF(validator.stake)],
+          ['Self Stake', formatGF(validator.self_stake)],
+          ['Delegated Stake', formatGF(validator.delegated_stake)],
           ['Consensus', validator.consensus ? 'Active' : 'Standby'],
           ['Produced Blocks', validator.produced_blocks.toLocaleString()],
-          ['Slashed', validator.slashed.toLocaleString()],
+          ['Slashed', formatGF(validator.slashed)],
           ['Evidence Count', String(validator.evidence_count)],
           ['Delegator Count', String(validator.delegator_count)],
-          ['Total Rewards', validator.rewards.toLocaleString()],
-          ['Delegation Rewards', validator.delegation_rewards.toLocaleString()],
+          ['Total Rewards', formatGF(validator.rewards)],
+          ['Delegation Rewards', formatGF(validator.delegation_rewards)],
           ['Registered', formatTime(validator.registered_at_unix)],
         ].map(([label, value]) => (
           <div key={label} className="bg-white rounded-lg border border-gray-100 p-4">

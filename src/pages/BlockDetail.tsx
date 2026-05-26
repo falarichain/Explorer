@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchBlock, BlockDetail, TxSummary } from '../api';
+import { formatGF } from '../lib/format';
 
 function formatTime(unix: number): string {
   return new Date(unix * 1000).toLocaleString();
@@ -78,7 +79,7 @@ export default function BlockDetailPage() {
                   <td className="px-5 py-3 font-mono text-gray-500">
                     <Link to={`/accounts/${tx.from}`} className="hover:text-primary-600">{tx.from.slice(0, 12)}...</Link>
                   </td>
-                  <td className="px-5 py-3">{tx.fee}</td>
+                  <td className="px-5 py-3">{formatGF(tx.fee)}</td>
                 </tr>
               ))}
               {txs.length === 0 && (

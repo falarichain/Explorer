@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchTransaction, TxDetail } from '../api';
+import { formatGF } from '../lib/format';
 
 function formatTime(unix: number): string {
   return new Date(unix * 1000).toLocaleString();
@@ -34,7 +35,7 @@ export default function TransactionPage() {
           ['Type', tx.type],
           ['From', tx.from],
           ['Nonce', String(tx.nonce)],
-          ['Fee', String(tx.fee)],
+          ['Fee', formatGF(tx.fee)],
           ['Payload Hash', tx.payload_hash],
           ['Block', tx.block_height ? String(tx.block_height) : '-'],
           ['Block Hash', tx.block_hash],

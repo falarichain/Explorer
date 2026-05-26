@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchIntent, fetchIntentShards, IntentDetail, ShardInfo } from '../api';
+import { formatGF } from '../lib/format';
 
 function formatBytes(bytes: number): string {
   if (bytes === 0) return '0 B';
@@ -46,8 +47,8 @@ export default function DealDetailPage() {
           ['Storage Status', intent.storage_status],
           ['Access', intent.access_status],
           ['Deal ID', intent.deal_id],
-          ['Locked Fee', intent.locked_fee.toLocaleString()],
-          ['Paid Fee', intent.paid_fee.toLocaleString()],
+          ['Locked Fee', formatGF(intent.locked_fee)],
+          ['Paid Fee', formatGF(intent.paid_fee)],
           ['Uploaded', formatBytes(intent.uploaded_size)],
           ['Erasure', `${intent.erasure.data_shards}+${intent.erasure.parity_shards} / ${intent.erasure.shard_size}B`],
           ['Policy', intent.policy ? `${intent.policy.class} / ${intent.policy.duration}s` : '-'],

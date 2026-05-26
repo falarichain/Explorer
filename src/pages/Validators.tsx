@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchValidators, ValidatorInfo } from '../api';
+import { formatGF } from '../lib/format';
 
 export default function Validators() {
   const [validators, setValidators] = useState<ValidatorInfo[]>([]);
@@ -37,8 +38,8 @@ export default function Validators() {
                   <td className="px-5 py-3 font-mono text-gray-500">
                     <Link to={`/validators/${v.validator_address}`} className="hover:text-primary-600">{v.validator_address.slice(0, 12)}...</Link>
                   </td>
-                  <td className="px-5 py-3">{v.stake.toLocaleString()}</td>
-                  <td className="px-5 py-3">{v.delegated_stake.toLocaleString()}</td>
+                  <td className="px-5 py-3">{formatGF(v.stake)}</td>
+                  <td className="px-5 py-3">{formatGF(v.delegated_stake)}</td>
                   <td className="px-5 py-3">
                     <span className={`text-xs px-2 py-0.5 rounded-full ${v.status === 'active' ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'}`}>
                       {v.status}
@@ -51,8 +52,8 @@ export default function Validators() {
                     }
                   </td>
                   <td className="px-5 py-3">{v.produced_blocks.toLocaleString()}</td>
-                  <td className="px-5 py-3 text-red-500">{v.slashed.toLocaleString()}</td>
-                  <td className="px-5 py-3">{v.rewards.toLocaleString()}</td>
+                  <td className="px-5 py-3 text-red-500">{formatGF(v.slashed)}</td>
+                  <td className="px-5 py-3">{formatGF(v.rewards)}</td>
                 </tr>
               ))}
             </tbody>

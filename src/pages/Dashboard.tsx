@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import StatCard from '../components/StatCard';
 import { fetchStatus, fetchBlocks, BlockSummary } from '../api';
+import { formatGF } from '../lib/format';
 import { Blocks, FileText, Activity, Shield, HardDrive, ArrowRight } from 'lucide-react';
 
 function formatBytes(bytes: number): string {
@@ -51,8 +52,9 @@ export default function Dashboard() {
     { label: 'Validators', value: `${status.active_validators || 0} / ${status.validators || 0}`, icon: <Shield className="w-5 h-5" /> },
     { label: 'Deals (intents)', value: status.intents?.toLocaleString() || '0', sub: `${status.finalized_intents || 0} finalized`, icon: <FileText className="w-5 h-5" /> },
     { label: 'Data Stored', value: formatBytes(status.total_data_bytes || 0) },
-    { label: 'Storage Rewards', value: (status.storage_rewards || 0).toLocaleString() },
-    { label: 'Total Slashed', value: (status.total_slashed || 0).toLocaleString() },
+    { label: 'Storage Rewards', value: formatGF(status.storage_rewards || 0) },
+    { label: 'Retrieval Rewards', value: formatGF(status.retrieval_rewards || 0) },
+    { label: 'Total Slashed', value: formatGF(status.total_slashed || 0) },
   ];
 
   return (

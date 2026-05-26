@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchIntents, IntentSummary } from '../api';
 import Pagination from '../components/Pagination';
+import { formatGF } from '../lib/format';
 
 function formatBytes(bytes: number): string {
   if (bytes === 0) return '0 B';
@@ -72,7 +73,7 @@ export default function Deals() {
                       {i.status}
                     </span>
                   </td>
-                  <td className="px-5 py-3">{i.locked_fee.toLocaleString()}</td>
+                  <td className="px-5 py-3">{formatGF(i.locked_fee)}</td>
                 </tr>
               ))}
             </tbody>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchMiner, MinerDetail } from '../api';
+import { formatGF } from '../lib/format';
 
 function formatBytes(bytes: number): string {
   if (bytes === 0) return '0 B';
@@ -46,16 +47,16 @@ export default function MinerDetailPage() {
           ['Capacity', formatBytes(miner.capacity_bytes)],
           ['Used', formatBytes(miner.used_bytes)],
           ['Reserved', formatBytes(miner.reserved_bytes)],
-          ['Stake', miner.stake.toLocaleString()],
+          ['Stake', formatGF(miner.stake)],
           ['Proofs (OK/Fail)', `${miner.proof_success} / ${miner.proof_failure}`],
           ['Consecutive Failures', String(miner.consecutive_failures)],
           ['Retrieval Success', String(miner.retrieval_success)],
           ['Retrieval Bytes', formatBytes(miner.retrieval_bytes)],
-          ['Storage Rewards', miner.storage_rewards.toLocaleString()],
-          ['Retrieval Rewards', miner.retrieval_rewards.toLocaleString()],
-          ['Repair Rewards', miner.repair_rewards.toLocaleString()],
-          ['Total Rewards', miner.rewards.toLocaleString()],
-          ['Slashed', miner.slashed.toLocaleString()],
+          ['Storage Rewards', formatGF(miner.storage_rewards)],
+          ['Retrieval Rewards', formatGF(miner.retrieval_rewards)],
+          ['Repair Rewards', formatGF(miner.repair_rewards)],
+          ['Total Rewards', formatGF(miner.rewards)],
+          ['Slashed', formatGF(miner.slashed)],
           ['Effective Weight', String(miner.effective_weight)],
           ['Speed Score', String(miner.speed_score)],
           ['Anti-Spam Score', String(miner.anti_spam_score)],
