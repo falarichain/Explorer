@@ -34,6 +34,8 @@ export default function Miners() {
                 <th className="text-left px-5 py-3">Stake</th>
                 <th className="text-left px-5 py-3">Status</th>
                 <th className="text-left px-5 py-3">Proofs</th>
+                <th className="text-left px-5 py-3">Success Rate</th>
+                <th className="text-left px-5 py-3">Locked Bonus</th>
                 <th className="text-left px-5 py-3">Retrievals</th>
                 <th className="text-left px-5 py-3">Rewards</th>
                 <th className="text-left px-5 py-3">Slashed</th>
@@ -57,6 +59,16 @@ export default function Miners() {
                   </td>
                   <td className="px-5 py-3 text-xs">
                     <span className="text-green-600">{m.proof_success}</span> / <span className="text-red-500">{m.proof_failure}</span>
+                  </td>
+                  <td className="px-5 py-3 text-xs">
+                    {(() => {
+                      const total = (m.proof_success || 0) + (m.proof_failure || 0);
+                      return total > 0 ? `${((m.proof_success / total) * 100).toFixed(1)}%` : 'N/A';
+                    })()}
+                  </td>
+                  <td className="px-5 py-3 text-xs">
+                    {formatGF(m.locked_bonus || 0)}
+                    {m.bonus_released && <span className="ml-1 text-green-600">(released)</span>}
                   </td>
                   <td className="px-5 py-3 text-xs">{m.retrieval_success} ({formatBytes(m.retrieval_bytes)})</td>
                   <td className="px-5 py-3">{formatGF((m.storage_rewards || 0) + (m.retrieval_rewards || 0) + (m.repair_rewards || 0))}</td>

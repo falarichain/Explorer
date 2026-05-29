@@ -49,6 +49,12 @@ export default function MinerDetailPage() {
           ['Reserved', formatBytes(miner.reserved_bytes)],
           ['Stake', formatGF(miner.stake)],
           ['Proofs (OK/Fail)', `${miner.proof_success} / ${miner.proof_failure}`],
+          ['Success Rate', (() => {
+            const total = (miner.proof_success || 0) + (miner.proof_failure || 0);
+            return total > 0 ? `${((miner.proof_success / total) * 100).toFixed(1)}%` : 'N/A';
+          })()],
+          ['Locked Bonus', formatGF(miner.locked_bonus || 0)],
+          ['Bonus Released', miner.bonus_released ? 'Yes' : 'No'],
           ['Consecutive Failures', String(miner.consecutive_failures)],
           ['Retrieval Success', String(miner.retrieval_success)],
           ['Retrieval Bytes', formatBytes(miner.retrieval_bytes)],

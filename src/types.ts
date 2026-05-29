@@ -126,6 +126,8 @@ export interface MinerInfo {
   retrieval_rewards: number;
   repair_rewards: number;
   slashed: number;
+  locked_bonus: number;
+  bonus_released: boolean;
 }
 
 export interface MinerDetail extends MinerInfo {
