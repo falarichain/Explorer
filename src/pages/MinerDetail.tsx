@@ -55,6 +55,7 @@ export default function MinerDetailPage() {
           })()],
           ['Locked Bonus', formatGF(miner.locked_bonus || 0)],
           ['Bonus Released', miner.bonus_released ? 'Yes' : 'No'],
+          ['Bonus Expired', miner.bonus_expired ? 'Yes' : 'No'],
           ['Consecutive Failures', String(miner.consecutive_failures)],
           ['Retrieval Success', String(miner.retrieval_success)],
           ['Retrieval Bytes', formatBytes(miner.retrieval_bytes)],

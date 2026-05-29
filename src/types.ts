@@ -128,6 +128,7 @@ export interface MinerInfo {
   slashed: number;
   locked_bonus: number;
   bonus_released: boolean;
+  bonus_expired: boolean;
 }
 
 export interface MinerDetail extends MinerInfo {

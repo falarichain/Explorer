@@ -69,6 +69,7 @@ export default function Miners() {
                   <td className="px-5 py-3 text-xs">
                     {formatGF(m.locked_bonus || 0)}
                     {m.bonus_released && <span className="ml-1 text-green-600">(released)</span>}
+                    {m.bonus_expired && <span className="ml-1 text-red-600">(expired)</span>}
                   </td>
                   <td className="px-5 py-3 text-xs">{m.retrieval_success} ({formatBytes(m.retrieval_bytes)})</td>
                   <td className="px-5 py-3">{formatGF((m.storage_rewards || 0) + (m.retrieval_rewards || 0) + (m.repair_rewards || 0))}</td>
