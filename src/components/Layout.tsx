@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Blocks, FileText, Users, HardDrive, Server, Search, Shield, LayoutDashboard } from 'lucide-react';
+import { Blocks, FileText, HardDrive, Search, Shield, LayoutDashboard } from 'lucide-react';
 
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },

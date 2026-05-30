@@ -1,5 +1,22 @@
 // In dev, Vite proxies /api to localhost:9090.
 // In production, set VITE_API_BASE to the explorer API URL.
+import type {
+  AccountInfo,
+  BlockDetail,
+  BlockSummary,
+  DailyStat,
+  IntentDetail,
+  IntentSummary,
+  MinerDetail,
+  MinerInfo,
+  SearchResult,
+  ShardInfo,
+  TxDetail,
+  TxSummary,
+  ValidatorDetail,
+  ValidatorInfo,
+} from './types';
+
 const API_BASE = import.meta.env.VITE_API_BASE || '';
 
 export async function fetchAPI<T = any>(path: string): Promise<T> {
